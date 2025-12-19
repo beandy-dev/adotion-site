@@ -1,164 +1,364 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Adote um Amigo - Transforme Vidas</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Adote um Amigo 🐾</title>
+
+  <!-- Fonte mais suave e moderna -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --primary: #ff7a59;
+      --secondary: #fff3ee;
+      --dark: #2d2d2d;
+      --gray: #6b6b6b;
+      --light: #fafafa;
+      --radius: 16px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: var(--light);
+      color: var(--dark);
+      line-height: 1.6;
+    }
+
+    /* HEADER */
+    header {
+      position: sticky;
+      top: 0;
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid #eee;
+      z-index: 1000;
+    }
+
+    nav {
+      max-width: 1200px;
+      margin: auto;
+      padding: 1.2rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-weight: 600;
+      font-size: 1.4rem;
+      color: var(--primary);
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 1.8rem;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--gray);
+      font-weight: 500;
+    }
+
+    .nav-links a:hover {
+      color: var(--primary);
+    }
+
+    /* HERO */
+    .hero {
+      min-height: 90vh;
+      display: grid;
+      place-items: center;
+      background:
+        linear-gradient(rgba(0,0,0,.35), rgba(0,0,0,.35)),
+        url('https://images.unsplash.com/photo-1601758228041-f3b2795255f1?auto=format&fit=crop&w=1600');
+      background-size: cover;
+      background-position: center;
+      text-align: center;
+      padding: 2rem;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.2rem, 5vw, 3.5rem);
+      color: #fff;
+      margin-bottom: 1rem;
+    }
+
+    .hero p {
+      max-width: 600px;
+      color: #f1f1f1;
+      margin-bottom: 2rem;
+      font-size: 1.1rem;
+    }
+
+    .btn {
+      background: var(--primary);
+      color: #fff;
+      padding: 0.9rem 2rem;
+      border-radius: 999px;
+      text-decoration: none;
+      font-weight: 500;
+      transition: transform .2s, box-shadow .2s;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(0,0,0,.2);
+    }
+
+    /* SECTIONS */
+    section {
+      max-width: 1200px;
+      margin: auto;
+      padding: 5rem 2rem;
+    }
+
+    section h2 {
+      text-align: center;
+      font-size: 2.2rem;
+      margin-bottom: 3rem;
+    }
+
+    /* ANIMAIS */
+    .animais-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2.5rem;
+    }
+
+    .animal-card {
+      background: #fff;
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: 0 20px 40px rgba(0,0,0,.08);
+      transition: transform .3s;
+    }
+
+    .animal-card:hover {
+      transform: translateY(-6px);
+    }
+
+    .animal-card img {
+      width: 100%;
+      height: 240px;
+      object-fit: cover;
+    }
+
+    .animal-info {
+      padding: 1.5rem;
+    }
+
+    .animal-info h3 {
+      margin-bottom: .4rem;
+    }
+
+    .animal-info p {
+      color: var(--gray);
+      font-size: .95rem;
+      margin-bottom: .8rem;
+    }
+
+    /* HISTÓRIAS */
+    .historias-section {
+      background: var(--secondary);
+      border-radius: 48px;
+    }
+
+    .historias-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2rem;
+    }
+
+    .historia {
+      background: #fff;
+      border-radius: var(--radius);
+      padding: 2rem;
+      box-shadow: 0 10px 25px rgba(0,0,0,.07);
+    }
+
+    .historia p {
+      color: var(--gray);
+      margin: 1rem 0;
+    }
+
+    .autor {
+      color: var(--primary);
+      font-weight: 500;
+    }
+
+    /* FOOTER */
+    footer {
+      background: #111;
+      color: #ccc;
+      padding: 3rem 2rem 2rem;
+      margin-top: 5rem;
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: auto;
+      display: grid;
+      gap: 2rem;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+
+    footer .footer-content a {
+        text-decoration: none;
+        color:#ccc
+    }
+
+    footer h3 {
+      color: #fff;
+      margin-bottom: .8rem;
+    }
+
+    .footer-bottom {
+      text-align: center;
+      margin-top: 2rem;
+      font-size: .9rem;
+      color: #777;
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+    }
+  </style>
 </head>
 <body>
-    <header>
-        <nav>
-            <div class="logo">
-                <h1>Adote um Amigo</h1>
-            </div>
-            <ul class="nav-links">
-                <li><a href="#animais">Animais</a></li>
-                <li><a href="#historias">Histórias</a></li>
-                <li><a href="#vacinacao">Vacinação</a></li>
-                <li><a href="#parcerias">Parcerias</a></li>
-            </ul>
-        </nav>
-    </header>
 
-    <main>
-        <section class="hero">
-            <div class="hero-content">
-                <h2>Cada animal merece uma segunda chance</h2>
-                <p>Milhares de cães aguardam por uma família que os ame. Seja parte dessa transformação.</p>
-                <a href="#animais" class="cta-button">Adotar Agora</a>
-            </div>
-        </section>
+  <header>
+    <nav>
+      <div class="logo">
+        <img src="imagem1.png" alt="🐶" style="width: 50px; height: 50px; border-radius: 50%; margin-right: 12px; object-fit: contain; vertical-align: middle;">
+        Audote
+      </div>
+      <ul class="nav-links">
+        <li><a href="#animais">Animais</a></li>
+        <li><a href="#historias">Histórias</a></li>
+        <li><a href="#vacinacao">Vacinação</a></li>
+        <li><a href="#contato">Contato</a></li>
+      </ul>
+    </nav>
+  </header>
 
-        <section id="animais" class="animais-section">
-            <h2>Animais Disponíveis para Adoção</h2>
-            <div class="animais-grid">
-                <div class="animal-card">
-                    <img src="https://images.unsplash.com/photo-1552053831-71594a27632d?w=300&h=300&fit=crop" alt="Max">
-                    <div class="animal-info">
-                        <h3>Max</h3>
-                        <p>Labrador, 3 anos</p>
-                        <p>Carinhoso e brincalhão, adora crianças</p>
-                        <button class="adopt-btn">Conhecer Max</button>
-                    </div>
-                </div>
-                <div class="animal-card">
-                    <img src="https://images.unsplash.com/photo-1583337130417-3346a1be7dee?w=300&h=300&fit=crop" alt="Luna">
-                    <div class="animal-info">
-                        <h3>Luna</h3>
-                        <p>Golden Retriever, 2 anos</p>
-                        <p>Dócil e inteligente, ideal para famílias</p>
-                        <button class="adopt-btn">Conhecer Luna</button>
-                    </div>
-                </div>
-                <div class="animal-card">
-                    <img src="https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=300&h=300&fit=crop" alt="Thor">
-                    <div class="animal-info">
-                        <h3>Thor</h3>
-                        <p>Pastor Alemão, 4 anos</p>
-                        <p>Protetor e leal, busca um lar definitivo</p>
-                        <button class="adopt-btn">Conhecer Thor</button>
-                    </div>
-                </div>
-            </div>
-        </section>
+  <section class="hero">
+    <div>
+      <h1>Amor que muda vidas</h1>
+      <p>Adotar um cachorro é ganhar um amigo fiel, companheiro e cheio de amor para toda a vida.</p>
+      <a href="#animais" class="btn">Ver cães para adoção</a>
+    </div>
+  </section>
 
-        <section id="historias" class="historias-section">
-            <h2>Histórias de Sucesso</h2>
-            <div class="historias-container">
-                <div class="historia">
-                    <img src="https://images.unsplash.com/photo-1601758228041-f3b2795255f1?w=400&h=300&fit=crop" alt="História de adoção">
-                    <div class="historia-content">
-                        <h3>Bella encontrou sua família</h3>
-                        <p>"Bella chegou até nós assustada e desconfiada. Hoje, dois anos depois, ela é a alegria da nossa casa. Não conseguimos imaginar nossa vida sem ela."</p>
-                        <span class="autor">- Família Santos</span>
-                    </div>
-                </div>
-                <div class="historia">
-                    <img src="https://images.unsplash.com/photo-1548199973-03cce0bbc87b?w=400&h=300&fit=crop" alt="História de adoção">
-                    <div class="historia-content">
-                        <h3>Rocky salvou nossa família</h3>
-                        <p>"Adotamos Rocky para fazer companhia ao nosso filho. O que não esperávamos era que ele se tornaria o melhor amigo de toda a família."</p>
-                        <span class="autor">- Família Oliveira</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="vacinacao" class="vacinacao-section">
-            <h2>Pontos de Vacinação</h2>
-            <div class="vacinacao-grid">
-                <div class="ponto-vacinacao">
-                    <h3>Clínica Veterinária Central</h3>
-                    <p>Rua das Flores, 123 - Centro</p>
-                    <p>Segunda a Sexta: 8h às 18h</p>
-                    <p>Telefone: (11) 3456-7890</p>
-                </div>
-                <div class="ponto-vacinacao">
-                    <h3>Hospital Veterinário Norte</h3>
-                    <p>Av. Principal, 456 - Zona Norte</p>
-                    <p>Segunda a Sábado: 7h às 19h</p>
-                    <p>Telefone: (11) 2345-6789</p>
-                </div>
-                <div class="ponto-vacinacao">
-                    <h3>Clínica Amigos dos Animais</h3>
-                    <p>Rua da Esperança, 789 - Zona Sul</p>
-                    <p>Terça a Domingo: 9h às 17h</p>
-                    <p>Telefone: (11) 4567-8901</p>
-                </div>
-            </div>
-        </section>
-
-        <section id="parcerias" class="parcerias-section">
-            <h2>Seja Nosso Parceiro</h2>
-            <div class="parcerias-content">
-                <div class="parceria-info">
-                    <h3>Por que ser parceiro?</h3>
-                    <ul>
-                        <li>Contribua para uma causa social importante</li>
-                        <li>Fortaleça a imagem da sua empresa</li>
-                        <li>Ajude a salvar vidas de animais abandonados</li>
-                        <li>Participe de uma rede de responsabilidade social</li>
-                    </ul>
-                </div>
-                <div class="como-contribuir">
-                    <h3>Como Contribuir</h3>
-                    <div class="contribuicoes">
-                        <div class="contribuicao">
-                            <h4>Doações</h4>
-                            <p>Ração, medicamentos, materiais de limpeza</p>
-                        </div>
-                        <div class="contribuicao">
-                            <h4>Serviços</h4>
-                            <p>Veterinários, transporte, divulgação</p>
-                        </div>
-                        <div class="contribuicao">
-                            <h4>Espaço</h4>
-                            <p>Locais para eventos de adoção</p>
-                        </div>
-                    </div>
-                    <button class="parceria-btn">Quero ser Parceiro</button>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer>
-        <div class="footer-content">
-            <div class="contato">
-                <h3>Contato</h3>
-                <p>Email: contato@adoteumamigo.org</p>
-                <p>Telefone: (11) 9999-8888</p>
-                <p>Endereço: Rua da Solidariedade, 100</p>
-            </div>
-            <div class="redes-sociais">
-                <h3>Siga-nos</h3>
-                <p>Facebook | Instagram | Twitter</p>
-            </div>
+  <section id="animais">
+    <h2>Cães esperando por você</h2>
+    <div class="animais-grid">
+      <div class="animal-card">
+        <img src="raquel.jpeg" alt="Raquel">
+        <div class="animal-info">
+          <h3>Raquel</h3>
+          <p>20 anos • Porte Grande • Chupetão • Fêmea</p>
+          <a class="btn" href="#">Conhecer</a>
         </div>
-        <div class="footer-bottom">
-            <p>&copy; 2024 Adote um Amigo. Todos os direitos reservados.</p>
+      </div>
+
+      <div class="animal-card">
+        <img src="https://images.unsplash.com/photo-1583337130417-3346a1be7dee" alt="Luna">
+        <div class="animal-info">
+          <h3>Luna</h3>
+          <p>2 anos • Porte Pequeno • Super dócil • Fêmea</p>
+          <a class="btn" href="#">Conhecer</a>
         </div>
-    </footer>
+      </div>
+
+      <div class="animal-card">
+        <img src="https://images.unsplash.com/photo-1587300003388-59208cc962cb" alt="Thor">
+        <div class="animal-info">
+          <h3>Thor</h3>
+          <p>4 anos • Porte Grande • Super carinhoso • Macho </p>
+          <a class="btn" href="#">Conhecer</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="historias" class="historias-section">
+    <h2>Histórias felizes</h2>
+    <div class="historias-container">
+      <div class="historia">
+        <h3>Bella encontrou um lar</h3>
+        <p>"Ela era medrosa, hoje é o coração da nossa família. Adotar foi a melhor decisão."</p>
+        <span class="autor">– Família Santos</span>
+      </div>
+
+      <div class="historia">
+        <h3>Rocky virou nosso melhor amigo</h3>
+        <p>"Mais que um cachorro, ele virou parte da família."</p>
+        <span class="autor">– Família Oliveira</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="vacinacao">
+    <h2>Pontos de Vacinação Gratuita 💉🐶</h2>
+    <div class="animais-grid">
+      <div class="animal-card">
+        <div class="animal-info">
+          <h3>Clínica Veterinária Central</h3>
+          <p>📍 Rua das Flores, 123 – Centro</p>
+          <p>🕒 Seg a Sex • 8h às 17h</p>
+          <p>💉 Vacinação antirrábica gratuita</p>
+        </div>
+      </div>
+
+      <div class="animal-card">
+        <div class="animal-info">
+          <h3>UBS Animal Zona Norte</h3>
+          <p>📍 Av. Principal, 456 – Zona Norte</p>
+          <p>🕒 Ter a Sáb • 9h às 18h</p>
+          <p>💉 Vacinas essenciais para cães</p>
+        </div>
+      </div>
+
+      <div class="animal-card">
+        <div class="animal-info">
+          <h3>Centro de Zoonoses Municipal</h3>
+          <p>📍 Rua da Saúde, 789 – Zona Sul</p>
+          <p>🕒 Qua a Dom • 8h às 16h</p>
+          <p>💉 Atendimento gratuito mediante cadastro</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer id="contato">
+    <div class="footer-content">
+      <div>
+        <h3>Contato</h3>
+        <p>contato@audoteumamigo.org</p>
+        <p>(11) 9999‑8888</p>
+      </div>
+      <div>
+        <h3>Siga-nos</h3>
+        <p><a href="https://www.instagram.com/eu.santoz?igsh=MTVpdXZ4YWo3M3EzdA==">Instagram</a> • Facebook • Twitter</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      © 2025 • Audote um Amigo • Feito com 🐾 e amor
+    </div>
+  </footer>
+
 </body>
 </html>
