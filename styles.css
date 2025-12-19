@@ -59,12 +59,15 @@ nav {
     background-size: cover;
     background-position: center;
     height: calc(100vh - 80px);
+    width: 100vw;
+    max-width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
     color: white;
     margin-top: -80px;
+    margin-left: calc(-50vw + 50%);
     padding-top: 80px;
 }
 
